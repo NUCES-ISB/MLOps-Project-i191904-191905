@@ -3,7 +3,9 @@ pipeline {
 
     stages {
         stage('Checkout - SCM') {
-            checkout scm
+            steps {
+                checkout scm
+            }
         }
         stage('Install dependencies and fixes') {
             steps {
@@ -18,10 +20,11 @@ pipeline {
                 sh "dvc pull"
             }
         }
-        stage('Data cleaning and augmentation - Airflow') {
+        stage('Data cleaning - Airflow') {
             steps {
-                echo 'Airflow'
-                sh 'cp data.csv processed_data.csv'
+                sh 'cp dags/data_cleaning_dag.py ~/airflow/dags/'
+                sh 'airflow scheduler -D'
+                sh 'airflow dags trigger data_cleaning_dag'
             }
         }
         stage('Train, track, and upload model - MLflow') {

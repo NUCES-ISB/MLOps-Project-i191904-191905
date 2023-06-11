@@ -12,19 +12,19 @@ pipeline {
                 sh 'pip3 install "apache-airflow[celery]==2.6.1" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.6.1/constraints-3.7.txt"'
                 sh 'pip3 install dvc[gdrive]'
                 sh 'pip3 install mlf-core'
-                sh 'mlf-core fix-artifact-paths mlruns/'
+                sh '/var/lib/jenkins/.local/bin/mlf-core fix-artifact-paths mlruns/'
             }
         }
         stage('Data fetching - DVC') {
             steps {
-                sh "dvc pull"
+                sh "/var/lib/jenkins/.local/bin/dvc pull"
             }
         }
         stage('Data cleaning - Airflow') {
             steps {
                 sh 'cp dags/data_cleaning_dag.py ~/airflow/dags/'
-                sh 'airflow scheduler -D'
-                sh 'airflow dags trigger data_cleaning_dag'
+                sh '/var/lib/jenkins/.local/bin/airflow scheduler -D'
+                sh '/var/lib/jenkins/.local/bin/airflow dags trigger data_cleaning_dag'
             }
         }
         stage('Train, track, and upload model - MLflow') {

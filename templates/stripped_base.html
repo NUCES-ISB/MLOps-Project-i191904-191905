@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="EN">
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <title>{% block title %}{% endblock %} - Network Analyzer</title>
+    {% endblock %}
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <span class="navbar-text mb" style="margin-left: 5%; ">AI for Network Traffic Monitoring</span>
+    </nav>
+
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer"  class="sans-font center-font">
+
+      <footer class="footer">
+          {% block footer %}
+          <div class="container">
+            <span class="text-muted">Implementation of project by i191904, i191905</a></span>
+          </div>
+          {% endblock %}
+      </footer>
+    </div>
+  </body>
+</html>

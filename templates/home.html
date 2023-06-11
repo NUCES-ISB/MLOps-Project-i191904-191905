@@ -1,0 +1,46 @@
+{% extends "stripped_base.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <center>
+  <form method="POST" action="" autocomplete="off">
+      <div style="width: 100%; display: inline-block; padding: 10px">
+      <h3 class="sans-font">
+        Please input complete network traffic string from wireshark/tshark below
+      </h3>
+      </div>
+      <div style="width: 700px; display: inline-block; padding: 10px">
+        <input type="text" placeholder="Enter string" name="input_string" style="width: 100%;" required>
+      </div>
+      <br>
+      <div style="display: inline-block; padding: 10px;" >
+        <button class="btn btn-outline-primary" type="submit">Submit traffic info</button>
+      </div>
+  </form>
+</center>
+    {% if message %}
+    <div style="padding: 0% 30%;">
+      {% if danger %}
+        <div class="alert alert-danger" role="alert">
+      {% else %}
+        {% if invalid %}
+          <div class="alert alert-secondary" role="alert">
+        {% else %}
+          <div class="alert alert-success" role="alert"> 
+        {% endif %}
+      {% endif %}
+        <h4>Results: The traffic is {{ message }}</h4>
+      </div>
+    </div>
+    {% endif %}
+
+    <script>
+      function train_btn_onclick(){
+        elem = document.getElementById("train-btn");
+        elem.disabled = True;
+        elem.innerText = 'Please wait...' 
+      }
+    </script>
+{% endblock %}

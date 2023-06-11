@@ -27,6 +27,7 @@ pipeline {
         }
         stage('Data cleaning - Airflow') {
             steps {
+                sh 'mkdir ~/airflow/'
                 sh 'mkdir ~/airflow/dags/'
                 sh 'cp dags/data_cleaning_dag.py ~/airflow/dags/'
                 sh '/var/lib/jenkins/.local/bin/airflow scheduler -D'

@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Install dependencies and fixes') {
             steps {
-                sh 'pip3 install "apache-airflow[celery]==2.6.1" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.6.1/constraints-3.8.txt"'
+                sh 'pip3 install "apache-airflow[celery]==2.6.1" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.6.1/constraints-3.7.txt"'
                 sh 'pip3 install dvc[gdrive]'
                 sh 'pip3 install mlf-core'
                 sh 'mlf-core fix-artifact-paths mlruns/'

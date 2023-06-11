@@ -13,6 +13,7 @@ pipeline {
                 sh 'pip3 install dvc[gdrive]==2.10.2'
                 sh 'pip3 install --force-reinstall -v "fsspec==2022.11.0"'
                 sh 'pip3 install mlf-core'
+                sh 'pip3 uninstall pyOpenSSL'
                 sh '# /var/lib/jenkins/.local/bin/mlf-core fix-artifact-paths mlruns/'
             }
         }

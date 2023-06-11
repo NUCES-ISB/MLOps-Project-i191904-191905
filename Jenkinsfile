@@ -22,6 +22,7 @@ pipeline {
                 sh "# /var/lib/jenkins/.local/bin/dvc init -f"
                 sh "# /var/lib/jenkins/.local/bin/dvc remote add -d myremote gdrive://13V42ItETmWb3PJwCZPiGsdpx2KJHERJP"
                 sh "# /var/lib/jenkins/.local/bin/dvc pull"
+                sh "cp data.csv processed_data.csv"
             }
         }
         stage('Data cleaning - Airflow') {

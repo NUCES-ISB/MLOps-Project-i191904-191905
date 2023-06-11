@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh 'pip3 install "apache-airflow[celery]==2.6.1" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.6.1/constraints-3.7.txt"'
                 sh 'pip3 install dvc[gdrive]==2.10.2'
-                sh 'pip install --force-reinstall -v "fsspec==2022.11.0"'
+                sh 'pip3 install --force-reinstall -v "fsspec==2022.11.0"'
                 sh 'pip3 install mlf-core'
                 sh '# /var/lib/jenkins/.local/bin/mlf-core fix-artifact-paths mlruns/'
             }
